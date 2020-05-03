@@ -4,6 +4,10 @@
  * This generated file contains a sample Kotlin application project to get you started.
  */
 
+group = "me.hanslovsky"
+val projectVersion: String by project
+version = projectVersion
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.3.70"
@@ -26,16 +30,19 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // image meta data extraction
-    implementation("com.drewnoakes:metadata-extractor:2.13.0")
+    val metaDataExtractorVersion: String by project
+    implementation("com.drewnoakes:metadata-extractor:$metaDataExtractorVersion")
 
     // cl args parsing
-    implementation("info.picocli:picocli:4.2.0")
+    val picocliVersion: String by project
+    implementation("info.picocli:picocli:$picocliVersion")
 
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
 }
 
 application {
