@@ -16,13 +16,6 @@ class Eksif: Callable<Int> {
 
     companion object {
         @JvmStatic
-        fun main(args: Array<String>) {
-            exitProcess(CommandLine(Eksif()).execute(*args))
-//            "/home/hanslovskyp/Pictures/this is us/Peter Ari/Pictures/canon/25%/20200302_123719_IMG_1660_v1.jpeg.JPG"
-//                    .file
-//                    .also { println("${it.path}:") }
-//                    .exifTags
-//                    .prettyPrint()
-        }
+        fun main(args: Array<String>): Unit = exitProcess(CommandLine(Eksif()).execute(*args))
     }
 }
