@@ -10,8 +10,11 @@ class PrintExif: Callable<Int> {
     @CommandLine.Parameters(arity = "*", paramLabel = "FILE", description = ["Image files for which to print Exif data"])
     val files = mutableListOf<File>()
 
-    @CommandLine.Option(names = ["--print-file-names"], required = false)
-    var printFileNames = false
+    @CommandLine.Option(names = ["--no-print-filenames"], required = false, negatable = true)
+    var printFileNames = true
+
+    @CommandLine.Option(names = ["--no-print-table-headers"], required = false, negatable = true)
+    var printTableHeaders = true
 
     @CommandLine.Option(names = ["--help", "-h"], required = false, usageHelp = true)
     var showUsageHelp = false
@@ -23,7 +26,7 @@ class PrintExif: Callable<Int> {
         files.forEach { file ->
             if (printFileNames)
                 println("${file.path}:")
-            file.exifTags.prettyPrint()
+            file.exifTags.prettyPrint(printTableHeader = printTableHeaders)
         }
         return 0
     }
