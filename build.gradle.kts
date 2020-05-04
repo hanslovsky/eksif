@@ -7,6 +7,7 @@
 group = "me.hanslovsky"
 val projectVersion: String by project
 version = projectVersion
+description = "EXIF tools for the command line."
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
