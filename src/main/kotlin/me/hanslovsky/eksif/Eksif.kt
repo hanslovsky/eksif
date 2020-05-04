@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 
 @CommandLine.Command(
         name = "eksif",
-        subcommands = [PrintExif::class, AutoComplete.GenerateCompletion::class])
+        subcommands = [PrintExif::class, Rename::class, AutoComplete.GenerateCompletion::class])
 class Eksif: Callable<Int> {
 
     @CommandLine.Option(names = ["--help", "-h"], required = false, usageHelp = true, description = ["Print this message."])
