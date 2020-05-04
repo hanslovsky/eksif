@@ -16,7 +16,7 @@ class PrintExif: Callable<Int> {
     @CommandLine.Option(names = ["--no-print-table-headers"], required = false, negatable = true)
     var printTableHeaders = true
 
-    @CommandLine.Option(names = ["--help", "-h"], required = false, usageHelp = true)
+    @CommandLine.Option(names = ["--help", "-h"], required = false, usageHelp = true, description = ["Print this message."])
     var showUsageHelp = false
 
 
