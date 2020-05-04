@@ -42,6 +42,9 @@ class Rename: Callable<Int> {
     @CommandLine.Option(names = ["--keep-original", "-k"], required = false, description = ["Copy instead of moving (keep original)."])
     private var copy = false
 
+    @CommandLine.Option(names = ["--help", "-h"], required = false, usageHelp = true, description = ["Print this message."])
+    var showUsageHelp = false
+
     override fun call(): Int {
         return try {
             rename()
