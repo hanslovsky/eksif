@@ -5,7 +5,7 @@ import picocli.CommandLine
 import java.io.File
 import java.util.concurrent.Callable
 
-@CommandLine.Command(name = "print-tags")
+@CommandLine.Command(name = "print-tags", description = ["Print image EXIF tags."])
 class PrintExif: Callable<Int> {
 
     @CommandLine.Parameters(arity = "*", paramLabel = "FILE", description = ["Image files for which to print Exif data"])
