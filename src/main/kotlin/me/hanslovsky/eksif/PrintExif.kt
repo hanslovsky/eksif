@@ -56,18 +56,20 @@ class PrintExif: Callable<Int> {
         return 0
     }
 
-
-}
-
-private fun Collection<Tag>.prettyPrint(
-        printTableHeader: Boolean,
-        tagFilter: (Tag) -> Boolean = { true },
-        printer: (String) -> Unit = { println(it) }) {
-    val maxTagNameLength = map { it.tagName.length }.max() ?: "Tag".length
-    val maxDescriptionLength = map { it.description.length }.max() ?: "Description".length
-    if (printTableHeader) {
-        printer("${"Tag".padEnd(maxTagNameLength)} Description")
-        printer("".padEnd(maxTagNameLength + maxDescriptionLength + 1, '-'))
+    companion object {
+        fun Collection<Tag>.prettyPrint(
+                printTableHeader: Boolean,
+                tagFilter: (Tag) -> Boolean = { true },
+                printer: (String) -> Unit = { println(it) }) {
+            val maxTagNameLength = map { it.tagName.length }.max() ?: "Tag".length
+            val maxDescriptionLength = map { it.description.length }.max() ?: "Description".length
+            if (printTableHeader) {
+                printer("${"Tag".padEnd(maxTagNameLength)} Description")
+                printer("".padEnd(maxTagNameLength + maxDescriptionLength + 1, '-'))
+            }
+            filter(tagFilter).forEach { printer("${it.tagName.padEnd(maxTagNameLength)} ${it.description}") }
+        }
     }
-    filter(tagFilter).forEach { printer("${it.tagName.padEnd(maxTagNameLength)} ${it.description}") }
+
+
 }

@@ -15,6 +15,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     application
+
+    `ivy-publish`
+    `maven-publish`
 }
 
 repositories {
@@ -44,9 +47,42 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
+    // Use MockK for mocking
+    val mockkVersion: String by project
+    testImplementation("io.mockk:mockk:${mockkVersion}")
+
 }
 
 application {
     // Define the main class for the application.
     mainClassName = "me.hanslovsky.eksif.Eksif"
+}
+
+publishing {
+    publications {
+        create<IvyPublication>("publishIvy") {
+            artifact(tasks.distZip.get())
+            artifact(tasks.distTar.get())
+        }
+    }
+    publications {
+        create<MavenPublication>("publishMaven") {
+            artifact(tasks.distZip.get())
+            artifact(tasks.distTar.get())
+            version = projectVersion
+            groupId = group as String
+            artifactId = rootProject.name
+            pom.withXml {
+                asNode().let { root ->
+                    root.appendNode("packaging", "jar")
+                    root.appendNode("name", rootProject.name)
+                    root.appendNode("description", description)
+                    root.appendNode("url", "http://hanslovsky.me")
+                    root.appendNode("inceptionYear","2020")
+//                    root.children().last() + pomConfig
+                }
+            }
+
+        }
+    }
 }
